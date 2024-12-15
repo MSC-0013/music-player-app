@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+</head>
+<body>
+    <div class="app-window">
+        <!-- Window Controls (minimize, maximize, close) -->
+        <div class="window-controls">
+            <div class="window-title">Desktop Music Player</div>
+            <div class="window-buttons">
+                <button class="window-btn minimize"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize"><i class="fas fa-square"></i></button>
+                <button class="window-btn close"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <!-- Library Section -->
+                <div class="sidebar-section">
+                    <div class="section-header">LIBRARY</div>
+                    <ul class="sidebar-menu">
+                        <li class="active"><i class="fas fa-music"></i>All Music</li>
+                        <li><i class="fas fa-clock"></i>Recently Added</li>
+                        <li><i class="fas fa-heart"></i>Favorites</li>
+                        <li><i class="fas fa-history"></i>Recently Played</li>
+                    </ul>
+                </div>
+
+                <!-- Playlists Section -->
+                <div class="sidebar-section">
+                    <div class="section-header">
+                        PLAYLISTS
+                        <button class="add-playlist-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <ul class="playlist-menu" id="playlistMenu">
+                        <!-- Playlists will be added here -->
+                    </ul>
+                </div>
+
+                <!-- Folders Section -->
+                <div class="sidebar-section">
+                    <div class="section-header">FOLDERS</div>
+                    <div class="folder-controls">
+                        <label for="folderInput" class="folder-btn" id="addFolderBtn">
+                            <i class="fas fa-folder-plus"></i> Add Music
+                        </label>
+                        <input type="file" id="folderInput" webkitdirectory directory multiple style="display: none;">
+                    </div>
+                    <ul class="folder-menu" id="folderMenu">
+                        <!-- Music folders will be listed here -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="navigation-controls">
+                        <button class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search music...">
+                    </div>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="details">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <button class="view-btn" data-view="grid">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Table Headers -->
+                    <div class="table-header">
+                        <div class="header-cell">TITLE</div>
+                        <div class="header-cell">DURATION</div>
+                    </div>
+
+                    <!-- Song List -->
+                    <div class="song-list" id="songList">
+                        <!-- Songs will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Now Playing Bar -->
+        <div class="now-playing-bar">
+            <div class="now-playing-left">
+                <div class="track-info">
+                    <img id="currentArt" src="default-album-art.png" alt="Album Art">
+                    <div class="track-details">
+                        <div id="currentSong" class="track-name">No track selected</div>
+                        <div id="currentArtist" class="track-artist">-</div>
+                    </div>
+                    <button class="like-btn" id="favoriteButton">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="now-playing-center">
+                <div class="player-controls">
+                    <button id="shuffleButton" class="control-btn">
+                        <i class="fas fa-random"></i>
+                    </button>
+                    <button id="prevButton" class="control-btn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button id="playPauseButton" class="control-btn play-btn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="nextButton" class="control-btn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button id="repeatButton" class="control-btn">
+                        <i class="fas fa-repeat"></i>
+                    </button>
+                </div>
+                <div class="playback-bar">
+                    <span id="currentTime" class="time">0:00</span>
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                    <span id="duration" class="time">0:00</span>
+                </div>
+            </div>
+
+            <div class="now-playing-right">
+                <button class="control-btn" id="queueButton">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button class="control-btn" id="volumeButton">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <div class="volume-slider">
+                    <input type="range" id="volumeSlider" min="0" max="100" value="100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
